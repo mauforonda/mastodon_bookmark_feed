@@ -55,9 +55,10 @@ def process_post(post):
 
     if post['reblog']:
         post_id = post['reblog']['id']
-        if post_id in catalog.keys() and not catalog[post_id]:
-            b = mst.status_bookmark(post_id)
-            catalog[post_id] = True
+        if post_id in catalog.keys():
+            if not catalog[post_id]:
+                b = mst.status_bookmark(post_id)
+                catalog[post_id] = True
         else:
             catalog[post_id] = False
 
